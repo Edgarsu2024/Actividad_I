@@ -1,0 +1,61 @@
+﻿@model IEnumerable<mvcActividad_1.Models.Producto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary mb-4">Lista de Productos</h2>
+
+    <!-- Botón para crear nuevo producto -->
+    <div class="mb-3">
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Crear Nuevo Producto
+        </a>
+    </div>
+
+    <!-- Tabla de productos -->
+    <table class="table table-hover table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
+                <th class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                    <td class="text-center">
+                        <!-- Botón de Editar -->
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm me-2">
+                            <i class="bi bi-pencil-square"></i> Editar
+                        </a>
+                        <!-- Botón de Detalles -->
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm me-2">
+                            <i class="bi bi-info-circle"></i> Detalles
+                        </a>
+                        <!-- Botón de Eliminar -->
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </a>
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+        
+    </table>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary btn-lg mt-4">
+        <i class="bi bi-box-seam"></i> Página principal
+    </a>
+</div>
+
+<!-- Sección para los scripts de Bootstrap y los íconos -->
+@section Scripts {
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet" />
+}
